@@ -1,4 +1,3 @@
-```python
 import subprocess
 from datetime import datetime, timedelta
 import os
@@ -43,22 +42,22 @@ def trim_video(video_path, start_time, output_path):
 
 # 비디오 파일 경로 목록
 video_paths = [
-    'C:/Users/user/Desktop/손정우/sync/G1V4L9J.MP4',
-    'C:/Users/user/Desktop/손정우/sync/G1V9O2U.MP4',
-    'C:/Users/user/Desktop/손정우/sync/G2J98XH.MP4',
-    'C:/Users/user/Desktop/손정우/sync/G6H7SPI.MP4',
-    'C:/Users/user/Desktop/손정우/sync/G8O07JO.MP4',
-    'C:/Users/user/Desktop/손정우/sync/G63TLOH.MP4',
-    'C:/Users/user/Desktop/손정우/sync/G89PDAB.MP4',
-    'C:/Users/user/Desktop/손정우/sync/G404T03.MP4',
-    'C:/Users/user/Desktop/손정우/sync/G4236MC.MP4',
-    'C:/Users/user/Desktop/손정우/sync/G04700A.MP4',
-    'C:/Users/user/Desktop/손정우/sync/GJ6E24G.MP4',
     'C:/Users/user/Desktop/손정우/sync/gopro01_240503.MP4',
-    'C:/Users/user/Desktop/손정우/sync/GRAOZLC.MP4',
-    'C:/Users/user/Desktop/손정우/sync/GTP8T2V.MP4',
-    'C:/Users/user/Desktop/손정우/sync/GY2SY6A.MP4',
-    'C:/Users/user/Desktop/손정우/sync/GYGMIR1.MP4'
+    'C:/Users/user/Desktop/손정우/sync/gopro02_240503.MP4',
+    'C:/Users/user/Desktop/손정우/sync/gopro03_240503.MP4',
+    'C:/Users/user/Desktop/손정우/sync/gopro04_240503.MP4',
+    'C:/Users/user/Desktop/손정우/sync/gopro05_240503.MP4',
+    'C:/Users/user/Desktop/손정우/sync/gopro06_240503.MP4',
+    'C:/Users/user/Desktop/손정우/sync/gopro07_240503.MP4',
+    'C:/Users/user/Desktop/손정우/sync/gopro08_240503.MP4',
+    'C:/Users/user/Desktop/손정우/sync/gopro09_240503.MP4',
+    'C:/Users/user/Desktop/손정우/sync/gopro10_240503.MP4',
+    'C:/Users/user/Desktop/손정우/sync/gopro11_240503.MP4',
+    'C:/Users/user/Desktop/손정우/sync/gopro12_240503.MP4',
+    'C:/Users/user/Desktop/손정우/sync/gopro13_240503.MP4',
+    'C:/Users/user/Desktop/손정우/sync/gopro14_240503.MP4',
+    'C:/Users/user/Desktop/손정우/sync/gopro15_240503.MP4',
+    'C:/Users/user/Desktop/손정우/sync/gopro16_240503.MP4'
 ]
 
 # 출력 경로 지정
@@ -89,15 +88,14 @@ if max_timecode:
     print(f'Latest timecode is {max_timecode[1]} from {max_timecode[0]}')
     latest_timecode_timedelta = max_timedelta
 
-    # 각 비디오 파일에서 기준 타임코드를 뺀 값만큼 자르기
+    # 각 비디오 파일에서 기준 타임코드를 뺀 값만큼 자르고 추가로 5초 더 자르기
+    additional_trim = timedelta(seconds=5)
     for video_path, timecode in timecodes:
         if timecode:
             tc_timedelta = timecode_to_timedelta(timecode)
-            start_time = latest_timecode_timedelta - tc_timedelta
-            output_path = os.path.join(output_dir, os.path.basename(video_path).replace('.MP4', '_trimmed.MP4'))
+            start_time = latest_timecode_timedelta - tc_timedelta + additional_trim
+            output_path = os.path.join(output_dir, os.path.basename(video_path).replace('.MP4', '_output.MP4'))
             trim_video(video_path, start_time, output_path)
             print(f'Trimmed {video_path} by {start_time}, saved as {output_path}')
 else:
     print('No valid timecodes found')
- 
-```
