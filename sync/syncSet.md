@@ -1,3 +1,4 @@
+```python
 import subprocess
 from datetime import datetime, timedelta
 import os
@@ -99,3 +100,5 @@ if max_timecode:
             print(f'Trimmed {video_path} by {start_time}, saved as {output_path}')
 else:
     print('No valid timecodes found')
+
+```
